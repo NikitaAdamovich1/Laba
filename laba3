@@ -1,0 +1,26 @@
+#!/bin/bash
+    echo "Использование: $0 <исходное_имя_файла> <новое_расширение>"
+    exit 1
+fi
+
+filename="$1"
+new_extension="$2"
+
+if [ ! -e "$filename" ]; then
+    echo "Файл '$filename' не существует."
+    exit 1
+fi
+
+basename="${filename%.*}"
+
+if [ "$basename" = "$filename" ]; then
+    echo "Исходное имя файла '$filename' не содержит расширения."
+    exit 1
+fi
+
+# Формируем новое имя файла с новым расширением
+new_filename="${basename}.${new_extension}"
+
+# Переименовываем файл
+mv "$filename" "$new_filename"
+echo "Файл '$filename' успешно переименован в '$new_filename'."
