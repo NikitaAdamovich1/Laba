@@ -1,4 +1,5 @@
 #!/bin/bash
+if [ $# -ne 2 ]; then
     echo "Использование: $0 <исходное_имя_файла> <новое_расширение>"
     exit 1
 fi
@@ -18,9 +19,7 @@ if [ "$basename" = "$filename" ]; then
     exit 1
 fi
 
-# Формируем новое имя файла с новым расширением
 new_filename="${basename}.${new_extension}"
 
-# Переименовываем файл
 mv "$filename" "$new_filename"
 echo "Файл '$filename' успешно переименован в '$new_filename'."
